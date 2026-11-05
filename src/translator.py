@@ -29,4 +29,6 @@ class PigLatinTranslator:
         last_letter = self.phrase[-1]  # Correct: indexes the last character
         if last_letter in "aeiou":
             return self.phrase + "yay"
-        return self.phrase + "nay"
+        if last_letter == "y":
+            return self.phrase + "nay"
+        return self.phrase + "ay"
