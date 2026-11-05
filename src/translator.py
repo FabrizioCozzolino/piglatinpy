@@ -1,6 +1,18 @@
 from src.error import PigLatinError
 
 
+def first_index_of_vowel(word: str) -> int:
+    found = False
+    i = 0
+    while not found and i < len(word):
+        letter = word[i]
+        if letter in "aeiou":
+            found = True
+        else:
+            i += 1
+    return i
+
+
 class PigLatinTranslator:
 
     def __init__(self, phrase: str):
@@ -25,24 +37,23 @@ class PigLatinTranslator:
         """
         if self.phrase == "":
             return "nil"
+
         first_letter = self.phrase[0]
         if first_letter in "aeiou":
-            last_letter = self.phrase[-1]  # Correct: indexes the last character
+            last_letter = self.phrase[-1]
             if last_letter in "aeiou":
                 return self.phrase + "yay"
             if last_letter == "y":
                 return self.phrase + "nay"
             return self.phrase + "ay"
 
-        found = False
-        i = 0
-        while not found and i < len(self.phrase):
-            letter = self.phrase[i]
-            if letter in "aeiou":
-                found = True
-            else:
-                i += 1
+        # Chiamata corretta senza self
+        i = first_index_of_vowel(self.phrase)
+
+        # Se non viene trovata alcuna vocale
+        if i == len(self.phrase):
+            raise PigLatinError("No vowels found in word")
+
         first_part = self.phrase[0:i]
         second_part = self.phrase[i:]
-        return second_part + first_part +"ay"
-
+        return second_part + first_part + "ay"
