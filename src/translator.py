@@ -10,11 +10,13 @@ class PigLatinTranslator:
         :raise PigLatinError: for any error situation.
         """
 
+
     def get_phrase(self) -> str:
         """
         Returns the phrase.
         :return: the phrase.
         """
+
 
     def translate(self) -> str:
         """
