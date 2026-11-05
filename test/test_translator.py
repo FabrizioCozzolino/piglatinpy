@@ -10,7 +10,7 @@ class TestPigLatinTranslator(TestCase):
         phrase = translator.get_phrase()
         self.assertEqual("hello world", phrase)
 
-    def test_translate(self):
+    def test_translate_empty_phrase(self):
         translator = PigLatinTranslator("")
         translation = translator.translate()
         self.assertEqual("nil", translation)
@@ -20,7 +20,7 @@ class TestPigLatinTranslator(TestCase):
         translation = translator.translate()
         self.assertEqual("anynay", translation)
 
-    def test_translate_word_starting_with_a_vowel_end_with_y(self):
+    def test_translate_word_starting_with_a_vowel_end_with_y_2(self):
         translator = PigLatinTranslator("enemy")
         translation = translator.translate()
         self.assertEqual("enemynay", translation)
@@ -40,7 +40,12 @@ class TestPigLatinTranslator(TestCase):
         translation = translator.translate()
         self.assertEqual("ellohay", translation)
 
-    def test_translate_word_starting_with_a_single_consonant(self):
+    def test_translate_word_starting_with_a_single_consonant_W(self):
         translator = PigLatinTranslator("word")
         translation = translator.translate()
         self.assertEqual("ordway", translation)
+
+    def test_translate_word_starting_with_double_consonant(self):
+        translator = PigLatinTranslator("known")
+        translation = translator.translate()
+        self.assertEqual("ownknay", translation)
