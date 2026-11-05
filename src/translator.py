@@ -47,12 +47,11 @@ class PigLatinTranslator:
                 return self.phrase + "nay"
             return self.phrase + "ay"
 
-        # Chiamata corretta senza self
         i = first_index_of_vowel(self.phrase)
 
-        # Se non viene trovata alcuna vocale
+        # Se non ci sono vocali (come in "fly"), la parola intera è composta da consonanti
         if i == len(self.phrase):
-            raise PigLatinError("No vowels found in word")
+            return self.phrase + "ay"
 
         first_part = self.phrase[0:i]
         second_part = self.phrase[i:]
