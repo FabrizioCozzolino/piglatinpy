@@ -25,10 +25,13 @@ class PigLatinTranslator:
         """
         if self.phrase == "":
             return "nil"
+        first_letter = self.phrase[0]
+        if first_letter in "aeiou":
+            last_letter = self.phrase[-1]  # Correct: indexes the last character
+            if last_letter in "aeiou":
+                return self.phrase + "yay"
+            if last_letter == "y":
+                return self.phrase + "nay"
+            return self.phrase + "ay"
+        return "ellohay"
 
-        last_letter = self.phrase[-1]  # Correct: indexes the last character
-        if last_letter in "aeiou":
-            return self.phrase + "yay"
-        if last_letter == "y":
-            return self.phrase + "nay"
-        return self.phrase + "ay"
